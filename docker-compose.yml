@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: agenda_medica_api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./api:/app
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+      - SECRET_KEY=fg5jkifd5hghgnd214@gr89
+      - DATABASE=agenda-medica.db
+    command: >
+      sh -c "python -m flask init-db && python run.py"
+
+  frontend:
+    image: nginx:alpine
+    container_name: agenda_medica_frontend
+    ports:
+      - "8000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - api

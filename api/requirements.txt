@@ -3,3 +3,4 @@ python-dotenv==1.0.1
 pytest==8.0.0
 Flask-CORS
 PyJWT
+flasgger==0.9.7.1
