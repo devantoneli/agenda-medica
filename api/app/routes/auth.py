@@ -8,8 +8,40 @@ from functools import wraps
 # Cria o Blueprint para rotas de autenticação
 bp = Blueprint('auth', __name__, url_prefix='/api/auth')
 
-@bp.route('/login', methods=['POST'])
+@bp.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    Autenticação de Usuário e geração de Token JWT
+    ---
+    tags:
+      - Autenticação
+    parameters:
+      - in: body
+        name: body
+        required: false
+        schema:
+          type: object
+          properties:
+            usuario:
+              type: string
+              example: recepcao
+            senha:
+              type: string
+              example: senha123
+    responses:
+      200:
+        description: Login realizado com sucesso
+      400:
+        description: Usuário e senha são obrigatórios
+      401:
+        description: Credenciais inválidas
+    """
+    if request.method == 'GET':
+        return jsonify({
+            "mensagem": "Endpoint de Autenticação",
+            "instrucoes": "Envie uma requisição POST com JSON contendo 'usuario' e 'senha' para realizar o login e obter o token JWT."
+        }), 200
+
     # Recebe os dados do corpo da requisição (JSON)
     dados = request.get_json()
     
@@ -62,16 +94,19 @@ def login():
 def token_obrigatorio(f):
     @wraps(f)
     def decorador(*args, **kwargs):
+        if request.method == 'OPTIONS':
+            return f(*args, **kwargs)
+
         token = None
-        
-        # Verifica se o header de Autorização foi enviado
-        if 'Authorization' in request.headers:
-            # O padrão HTTP é enviar "Bearer "
-            auth_header = request.headers['Authorization']
-            partes = auth_header.split()
-            
-            if len(partes) == 2 and partes[0] == 'Bearer':
-                token = partes[1]
+        auth_header = (request.headers.get('Authorization') or request.headers.get('authorization') or '').strip()
+
+        if auth_header:
+            if auth_header.lower().startswith('bearer '):
+                token = auth_header[7:].strip()
+                if token.lower().startswith('bearer '):
+                    token = token[7:].strip()
+            else:
+                token = auth_header
 
         if not token:
             return jsonify({'erro': 'Token não fornecido ou mal formatado!'}), 401

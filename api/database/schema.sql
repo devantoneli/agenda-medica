@@ -1,3 +1,10 @@
+DROP TABLE IF EXISTS agendamentos;
+DROP TABLE IF EXISTS medicos;
+DROP TABLE IF EXISTS pacientes;
+DROP TABLE IF EXISTS convenios;
+DROP TABLE IF EXISTS especialidades;
+DROP TABLE IF EXISTS usuarios;
+
 -- 1. Tabela de Usuários (Autenticação)
 CREATE TABLE usuarios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

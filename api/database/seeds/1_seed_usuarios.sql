@@ -1,2 +1,2 @@
 INSERT INTO usuarios (nome, usuario, email, senha_hash) VALUES 
-('Recepcionista Central', 'recepcao', 'recepcao@clinica.com.br', 'scrypt:32768:8:1$aqRDqjgZUStJzNfg$e6fc61ee9b8aa72d8f1f331f29621757c9a67eb4f7e3d8661f163c2dbb46bfb2e2dede3403f7f8ad0ce291078537585704f5bd018323e86db67cbf4cc127a1ce');
+('Recepcionista Central', 'recepcao', 'recepcao@clinica.com.br', 'scrypt:32768:8:1$pHWOXxCpP2m6eZgW$e4c5909386d00b8249639aee0639c7966a724067c259596daa6970ffe8a8d7e96ac9763df0351d581ca7911845d7a3efce3c2d2b05662affc39f4f5f2c7d46cd');
