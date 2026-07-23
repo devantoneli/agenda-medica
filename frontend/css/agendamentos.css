@@ -36,11 +36,13 @@ body {
     padding: 18px 10px;
     display: flex;
     flex-direction: column;
-    position: sticky;
+    position: fixed;
     top: 0;
-    flex-shrink: 0;
-    min-height: 100vh;
+    left: 0;
+    bottom: 0;
     height: 100vh;
+    flex-shrink: 0;
+    z-index: 100;
     overflow: hidden;
 }
 
@@ -105,9 +107,10 @@ body {
 
 .content {
     flex: 1;
+    margin-left: 170px;
     min-width: 0;
-    width: 100%;
-    max-width: 100%;
+    width: calc(100% - 170px);
+    max-width: calc(100% - 170px);
     padding: 36px 28px 28px;
     box-sizing: border-box;
     overflow-x: hidden;
@@ -492,6 +495,8 @@ body {
         min-height: auto;
         position: relative;
         top: auto;
+        left: auto;
+        bottom: auto;
         gap: 18px;
     }
 
@@ -532,6 +537,9 @@ body {
     }
 
     .content {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
         padding: 18px 14px 14px;
     }
 
