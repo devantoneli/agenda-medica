@@ -4,7 +4,7 @@ from app.routes.auth import token_obrigatorio
 
 bp = Blueprint('agendamentos', __name__, url_prefix='/api/agendamentos')
 
-@bp.route('/', methods=['GET'])
+@bp.route('/', methods=['GET', 'OPTIONS'], strict_slashes=False)
 @token_obrigatorio
 def listar_agendamentos():
     db = get_db()
@@ -51,7 +51,7 @@ def listar_agendamentos():
                 p.nome LIKE ? OR 
                 p.cpf LIKE ? OR 
                 m.nome LIKE ? OR 
-                m.especialidade LIKE ? OR 
+                e.nome LIKE ? OR 
                 m.crm LIKE ?
             )
         """
