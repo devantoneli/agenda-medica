@@ -1,4 +1,4 @@
-# 🏥 Agenda Médica - Desafio Técnico TimeSaver
+# 🏥 Agenda Médica
 
 Aplicação web completa de **Agenda Médica**, uma solução simples para consulta de agendamentos pré-cadastrados. A aplicação possui autenticação segura com JWT, exibição e filtragem de agendamentos médicos em tempo real com a biblioteca **Tabulator**, mini relatórios de médicos e pacientes com contadores de consultas por status, além de suíte de testes automatizados e containerização completa em Docker.
 
