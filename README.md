@@ -44,9 +44,9 @@ Com o [Docker](https://www.docker.com/) e o [Docker Compose](https://docs.docker
    docker compose up --build
    ```
 2. O Docker iniciará automaticamente:
-   - **Frontend Web App:** `http://localhost:8000`
-   - **API Backend:** `http://localhost:5000`
-3. Acesse `http://localhost:8000` no seu navegador para utilizar a aplicação.
+   - **Frontend Web App:** `http://127.0.0.1:8000`
+   - **API Backend:** `http://127.0.0.1:5000`
+3. Acesse `http://127.0.0.1:8000` no seu navegador para utilizar a aplicação.
 
 ---
 
@@ -66,7 +66,7 @@ Dê dois cliques no arquivo `frontend/index.html` ou suba um servidor estático:
 ```bash
 python -m http.server 8000 --directory frontend
 ```
-Acesse `http://localhost:8000` no navegador.
+Acesse `http://127.0.0.1:8000` no navegador.
 
 ---
 

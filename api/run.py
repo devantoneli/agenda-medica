@@ -8,8 +8,8 @@ def exibir_banner():
 ================================================================================
 AGENDA MEDICA - SISTEMA INICIADO COM SUCESSO!
 ================================================================================
-Frontend Web App:  http://localhost:8000 (ou http://127.0.0.1:8000)
-API & Swagger UI:  http://localhost:5000 (ou http://127.0.0.1:5000)
+Frontend Web App:  http://127.0.0.1:8000
+API & Swagger UI:  http://127.0.0.1:5000
 
 Endpoints da API Disponiveis:
    - GET  /                     -> Documentacao Interativa Swagger UI
