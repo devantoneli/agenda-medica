@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médicos - Agenda Médica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/agendamentos.css">
+</head>
+<body>
+    <div class="page-shell">
+        <div class="sidebar">
+            <div class="sidebar-top">
+                <div class="brand">
+                    <img src="img/logo-agenda-branco.png" alt="Agenda Médica" class="brand-logo">
+                </div>
+
+                <nav class="side-nav">
+                    <a href="agendamentos.html" class="side-link">Início</a>
+                    <a href="medicos.html" class="side-link is-active">Médicos</a>
+                    <a href="pacientes.html" class="side-link">Pacientes</a>
+                </nav>
+            </div>
+
+            <button id="btn-sair" class="btn-sair">Sair</button>
+        </div>
+
+        <main class="content">
+            <section class="topbar topbar-agendamentos">
+                <div class="topbar-title">
+                    <h2>Médicos</h2>
+                    <button id="btn-atualizar" class="btn-reload" type="button" aria-label="Atualizar médicos">↻</button>
+                </div>
+
+                <div class="topbar-controls">
+                    <div class="filter-wrapper">
+                        <div class="search-shell">
+                            <span class="search-icon search-icon-left" aria-hidden="true">⌕</span>
+                            <input id="filtro-medicos" type="search" placeholder="Pesquise por médico, CRM, especialidade">
+                            <button id="btn-limpar-filtros" class="clear-filters-btn" type="button" aria-label="Limpar filtro" hidden>Limpar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="table-card">
+                <div id="lista-medicos"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+    <script type="module" src="js/medicos/main.js"></script>
+</body>
+</html>

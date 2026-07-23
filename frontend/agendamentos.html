@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Agendamentos - Agenda Médica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tabulator-tables@6.2.1/dist/css/tabulator.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/agendamentos.css">
+</head>
+<body>
+    <div class="page-shell">
+        <div class="sidebar">
+            <div class="sidebar-top">
+                <div class="brand">
+                    <img src="img/logo-agenda-branco.png" alt="Agenda Médica" class="brand-logo">
+                </div>
+
+                <nav class="side-nav">
+                    <a href="agendamentos.html" class="side-link is-active">Início</a>
+                    <a href="medicos.html" class="side-link">Médicos</a>
+                    <a href="pacientes.html" class="side-link">Pacientes</a>
+                </nav>
+            </div>
+
+            <button id="btn-sair" class="btn-sair">Sair</button>
+        </div>
+
+        <main class="content">
+            <section class="topbar topbar-agendamentos">
+                <div class="topbar-title">
+                    <h2>Agendamentos</h2>
+                    <button id="btn-atualizar" class="btn-reload" type="button" aria-label="Atualizar agendamentos">↻</button>
+                </div>
+
+                <div class="topbar-controls">
+                    <div class="period-filters" role="group" aria-label="Filtro por período">
+                        <button class="period-btn" data-period="ontem" type="button">Ontem</button>
+                        <button class="period-btn" data-period="hoje" type="button">Hoje</button>
+                        <button class="period-btn is-active" data-period="todos" type="button">Todos</button>
+                        <button class="period-btn" data-period="amanha" type="button">Amanhã</button>
+                    </div>
+
+                    <div class="filter-wrapper">
+                        <div class="search-shell">
+                            <span class="search-icon search-icon-left" aria-hidden="true">⌕</span>
+                            <input id="filtro-agendamentos" type="search" placeholder="Pesquise por paciente, médico">
+                            <button id="btn-filtro-avancado" class="search-icon search-icon-right" type="button" aria-label="Abrir filtros avançados">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" class="filter-icon-svg">
+                                    <path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button id="btn-limpar-filtros" class="clear-filters-btn" type="button" aria-label="Limpar filtros">Limpar</button>
+                        </div>
+
+                        <div id="filtro-avancado-panel" class="filter-popover" aria-hidden="true">
+                            <div class="filter-popover-row">
+                                <label for="filtro-avancado-tipo">Filtrar por</label>
+                                <select id="filtro-avancado-tipo">
+                                    <option value="dia">Dia</option>
+                                    <option value="mes">Mês</option>
+                                    <option value="ano">Ano</option>
+                                    <option value="status">Status</option>
+                                    <option value="especialidade">Especialidade</option>
+                                    <option value="convenio">Convênio</option>
+                                </select>
+                            </div>
+
+                            <div id="filtro-avancado-valor" class="filter-popover-value"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="table-card">
+                <div id="lista-agendamentos"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/tabulator-tables@6.2.1/dist/js/tabulator.min.js"></script>
+    <!-- Link para o arquivo JavaScript -->
+    <script type="module" src="js/agendamentos/main.js"></script>
+</body>
+</html>

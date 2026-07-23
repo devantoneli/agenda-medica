@@ -1,0 +1,204 @@
+/* Reset básico e fontes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    /* Cor de fundo azul escuro da tela inteira */
+    background-color: #0c7a94; 
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container principal do Card */
+.login-card {
+    display: flex;
+    width: 900px;
+    height: 550px;
+    /* O card inteiro recebe a cor verde-água */
+    background-color: #00b4b6;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+/* LADO ESQUERDO (Fundo Branco em Onda) */
+.left-side {
+    flex: 1.1; /* Dá um pouco mais de espaço para a onda não esmagar a ilustração */
+    
+    /* AQUI ENTRA A SUA IMAGEM DA ONDA */
+    background-image: url('../img/fundo-branco.png');
+    background-size: cover; /* Faz a imagem cobrir todo o espaço */
+    background-position: left center;
+    background-repeat: no-repeat;
+    
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.illustration {
+    margin-top: 40px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration img {
+    max-width: 90%; /* Evita que a ilustração fique por cima da onda */
+    height: auto;
+}
+
+/* LADO DIREITO (Verde-água com o formulário) */
+.right-side {
+    flex: 0.9; /* Ocupa o restante do espaço */
+    padding: 50px 40px 50px 10px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-side h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 32px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+/* Estilo dos inputs arredondados */
+.input-group input {
+    background-color: #0c8c9a;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: #79cdd5;
+}
+
+.forgot-password {
+    color: #ffffff;
+    font-size: 12px;
+    text-align: right;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 30px;
+    text-decoration: underline;
+}
+
+/* Botão Entrar */
+.btn-entrar {
+    background-color: #38d39f;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-entrar:hover {
+    background-color: #2ebc8d;
+}
+
+/* Footer de contato */
+.support-text {
+    text-align: right;
+    font-size: 11px;
+    margin-top: 40px;
+    line-height: 1.5;
+}
+
+.support-text a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Mensagem de Erro */
+.mensagem-erro {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-align: center;
+    display: none;
+}
+
+/* =========================================
+   RESPONSIVIDADE (CELULARES E TABLETS)
+   ========================================= */
+@media (max-width: 900px) {
+    body {
+        padding: 20px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 500px; /* Evita que fique largo demais em tablets */
+        height: auto;
+        flex-direction: column; /* Empilha a esquerda e a direita */
+    }
+
+    .left-side {
+        flex: none;
+        padding: 30px;
+        background-image: none; /* Tira a imagem da onda que quebra o layout no celular */
+        background-color: #ffffff;
+        align-items: center;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
+    .illustration {
+        display: none; /* Esconde a ilustração grande no celular para poupar espaço */
+    }
+
+    .right-side {
+        flex: none;
+        width: 100%;
+        padding: 40px 30px;
+        /* Como empilhou, não precisa daquela margem negativa */
+        margin-left: 0; 
+        border-radius: 0; /* Remove os raios tortos usados para o efeito no desktop */
+        background-color: #00b4b6;
+    }
+
+    .right-side h2 {
+        text-align: center;
+        font-size: 28px;
+    }
+}
