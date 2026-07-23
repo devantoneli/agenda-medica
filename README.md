@@ -1,6 +1,6 @@
 # 🏥 Agenda Médica - Desafio Técnico TimeSaver
 
-Aplicação web completa de **Agenda Médica** desenvolvida como solução para o desafio técnico TimeSaver. A aplicação possui autenticação segura com JWT, exibição e filtragem de agendamentos médicos em tempo real com a biblioteca **Tabulator**, relatórios de médicos e pacientes com contadores de consultas por status, além de suíte de testes automatizados e containerização completa em Docker.
+Aplicação web completa de **Agenda Médica**, uma solução simples para consulta de agendamentos pré-cadastrados. A aplicação possui autenticação segura com JWT, exibição e filtragem de agendamentos médicos em tempo real com a biblioteca **Tabulator**, mini relatórios de médicos e pacientes com contadores de consultas por status, além de suíte de testes automatizados e containerização completa em Docker.
 
 ---
 
@@ -10,13 +10,13 @@ Aplicação web completa de **Agenda Médica** desenvolvida como solução para 
 - **Python 3.11+** com **Flask** (Arquitetura modular em Blueprints e Application Factory)
 - **SQLite** (Banco de dados relacional com `PRAGMA foreign_keys = ON`)
 - **PyJWT** (Autenticação baseada em Tokens JWT)
+- **Flasgger / Swagger UI** (Documentação interativa OpenAPI 2.0)
 - **Werkzeug** (Criptografia de senhas com algoritmo `scrypt`)
 - **Flask-CORS** (Habilitação de requisições Cross-Origin de forma segura)
 - **Pytest & Unittest** (18 testes automatizados cobrindo rotas, autenticação e cenários de exceção)
 
 ### Frontend
-- **HTML5 & CSS3 Vanilla** (Design moderno, responsivo com suporte a glassmorphism e cores fluidas)
-- **JavaScript (ES6+)** (Consumo de APIs REST assíncronas com `fetch` e módulos ES6)
+- **HTML5, CSS3 & JavaScript Vanilla (ES6+)** (Design moderno, responsivo com suporte a glassmorphism, consumo assíncrono direto via `fetch` e sem sobrecarga de frameworks)
 - **Tabulator v6.2.1** (Biblioteca interativa para renderização de tabelas, ordenação e busca em tempo real)
 
 ### Infraestrutura & DevOps
@@ -45,7 +45,7 @@ Com o [Docker](https://www.docker.com/) e o [Docker Compose](https://docs.docker
    ```
 2. O Docker iniciará automaticamente:
    - **Frontend Web App:** `http://127.0.0.1:8000`
-   - **API Backend:** `http://127.0.0.1:5000`
+   - **API & Swagger UI:** `http://127.0.0.1:5000`
 3. Acesse `http://127.0.0.1:8000` no seu navegador para utilizar a aplicação.
 
 ---
@@ -97,17 +97,28 @@ Resultados esperados: **`18 passed` (100% de aprovação)**.
 
 ---
 
-## 💡 Decisões Técnicas e Soluções Adotadas
+## 💡 Decisões Técnicas e Arquiteturais
 
-1. **Uso do Tabulator v6.2.1**:
-   - Tabela de alta performance exigida pelo desafio técnico, com suporte a mensagens amigáveis em resultados vazios (`placeholder`), ordenação rápida de colunas e formatação dinâmica de badges de status.
-2. **Estabilidade de Layout e Design Responsivo**:
-   - Aplicação de `scrollbar-gutter: stable` para evitar sobressaltos e mudanças de largura no cabeçalho durante a filtragem de dados.
-   - Isolamento de rolagem horizontal dentro do card da tabela (`overflow-x: auto`), mantendo a barra lateral, o cabeçalho e os campos de busca fixos e estáticos em telas pequenas e celulares.
-3. **Estrutura Modular no Flask (Blueprints)**:
-   - Rotas organizadas por domínio (`auth.py`, `agendamentos.py`, `medicos.py`, `pacientes.py`), mantendo o código limpo, legível e de fácil manutenção.
-4. **Segurança e Tratamento de Falhas**:
-   - Criptografia de senhas com `scrypt`.
-   - Consultas SQL protegidas contra *SQL Injection* via *parameterized queries*.
-   - Tratamento de exceções com respostas JSON adequadas e tratativa de expiração/ausência de token JWT.
-   - Botão **Sair** totalmente integrado limpando o token armazenado e redirecionando à tela de login.
+1. **Modelagem de Banco de Dados Relacional e Normalização**:
+   - Decisão de estruturar o banco de dados em tabelas normalizadas e dedicadas (`pacientes`, `medicos`, `especialidades`, `convenios`, `agendamentos` e `usuarios`).
+   - Essa abordagem garante integridade referencial via `FOREIGN KEY`, evita a duplicação de dados, simplifica as consultas de junção (`JOIN`) e permite extrair contagens e relatórios estatísticos por entidade com facilidade.
+
+2. **Execução Unificada em Docker (Comando Único)**:
+   - Orquestração completa do Backend (API Flask) e do Frontend (servidor Nginx) através do `docker-compose.yml`.
+   - Essa decisão permite a execução do sistema inteiro em segundos rodando (`docker compose up --build`), dispensando a necessidade de configurar ambientes virtuais Python ou servidores estáticos locais.
+
+3. **Arquitetura Frontend com HTML5, CSS3 e JavaScript Vanilla**:
+   - Escolha por construir o frontend sem frameworks pesados (como React, Angular ou Vue), utilizando **Vanilla JavaScript (ES6+)** e **CSS3 moderno**.
+   - Proporciona tempo de carregamento praticamente instantâneo, consumo assíncrono limpo das APIs REST via `fetch`, controle total sobre a responsividade e leveza para a aplicação.
+
+4. **Documentação Interativa com Swagger UI**:
+   - Para inspecionar os esquemas de dados, parâmetros aceitos e testar a autenticação com Token JWT de forma interativa sem precisar importar coleções no Postman ou Insomnia.
+
+5. **Uso da Biblioteca Tabulator v6.2.1**:
+   - Para renderização de tabelas dinâmicas e ordenação rápida por colunas.
+
+6. **Estrutura Modular no Flask (Blueprints & Factory Pattern)**:
+   - Organização do backend por domínios (`auth.py`, `agendamentos.py`, `medicos.py`, `pacientes.py`), facilitando a manutenção e extensibilidade do projeto.
+
+7. **Segurança e Criptografia**:
+   - Armazenamento de senhas com hashes seguros via `scrypt` e proteção contra SQL Injection através de consultas parametrizadas.
